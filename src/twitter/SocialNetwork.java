@@ -3,6 +3,7 @@
  */
 package twitter;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +42,20 @@ public class SocialNetwork {
      *         either authors or @-mentions in the list of tweets.
      */
     public static Map<String, Set<String>> guessFollowsGraph(List<Tweet> tweets) {
+		String author;
+		List<Tweet> writtenBy;
+		Set<String> mentionedUsers;
+		Map<String, Set<String>> followGraph = new HashMap<String, Set<String>>();
     	
+		for(Tweet tweet: tweets) {
+			author = tweet.getAuthor();
+			writtenBy = Filter.writtenBy(tweets, author);
+			mentionedUsers = Extract.getMentionedUsers(writtenBy);
+			if (!mentionedUsers.isEmpty()) {
+				followGraph.put(author, mentionedUsers);
+			}
+		}
+    	return followGraph;
     }
 
     /**
@@ -54,6 +68,7 @@ public class SocialNetwork {
      *         descending order of follower count.
      */
     public static List<String> influencers(Map<String, Set<String>> followsGraph) {
+		return null;
     	
     }
 
