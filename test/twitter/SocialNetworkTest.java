@@ -54,7 +54,7 @@ public class SocialNetworkTest {
     public void test1GuessFollowsGraph() {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
         
-        assertTrue("expected followers list", followsGraph.get("Ernie").containsValue("Bert"));
+        assertTrue("expected followers list", followsGraph.get("Ernie").contains("Bert"));
 
     }
     @Test
@@ -62,14 +62,14 @@ public class SocialNetworkTest {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
 
 
-        assertTrue("expected empty graph", followsGraph.get("Ernie").containsValue("Zaeem"));
+        assertTrue("expected empty graph", followsGraph.get("Ernie").contains("Zaeem"));
     }
     @Test
     public void test3GuessFollowsGraph() {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
 
 
-        assertTrue("expected empty graph", followsGraph.get("Ernie").containsValue("Momin"));
+        assertTrue("expected empty graph", followsGraph.get("Ernie").contains("Momin"));
     }
     @Test
     public void testInfluencersEmpty() {
