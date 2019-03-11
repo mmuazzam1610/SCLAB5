@@ -41,7 +41,7 @@ public class SocialNetwork {
      *         either authors or @-mentions in the list of tweets.
      */
     public static Map<String, Set<String>> guessFollowsGraph(List<Tweet> tweets) {
-        throw new RuntimeException("not implemented");
+    	
     }
 
     /**
@@ -54,7 +54,7 @@ public class SocialNetwork {
      *         descending order of follower count.
      */
     public static List<String> influencers(Map<String, Set<String>> followsGraph) {
-        throw new RuntimeException("not implemented");
+    	
     }
 
 }
