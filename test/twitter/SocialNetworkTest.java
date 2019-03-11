@@ -84,17 +84,18 @@ public class SocialNetworkTest {
         HashSet<String> one = new HashSet<String>();
         HashSet<String> two = new HashSet<String>();
         HashSet<String> three = new HashSet<String>();
-        one.add("@khadeej");
-        two.add("@momin");
-        three.add("@bushi");
-        followsGraph.put("@muneeb", one);
-        followsGraph.put("@maamrafia", two);
-        followsGraph.put("@sirshehzad", three);
-        followsGraph.put("@fyprip", one);
-        followsGraph.put("@mairay28marks", one);
-        followsGraph.put("@yusra27lolz", two);
+        one.add("khadeej");
+        two.add("momin");
+        three.add("bushi");
+        followsGraph.put("muneeb", one);
+        followsGraph.put("maamrafia", two);
+        followsGraph.put("sirshehzad", three);
+        followsGraph.put("fyprip", one);
+        followsGraph.put("mairay28marks", one);
+        followsGraph.put("yusra27lolz", two);
         List<String> influencers = SocialNetwork.influencers(followsGraph);
         assertEquals(influencers.get(0), "khadeej");
+        assertEquals(influencers.get(1), "momin");
         assertEquals(influencers.get(2), "bushi");
     }
 

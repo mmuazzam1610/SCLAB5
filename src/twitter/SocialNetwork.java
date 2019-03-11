@@ -76,7 +76,8 @@ public class SocialNetwork {
 		for(Set<String> follows : followsGraph.values()) {
 			for(String user : follows) {
 				if(influencers.contains(user)) {
-					followers.get(influencers.indexOf(user));
+					int follower = followers.get(influencers.indexOf(user));
+					followers.set(followers.indexOf(follower), follower+1);
 				}
 				else {
 					influencers.add(user);
@@ -85,9 +86,10 @@ public class SocialNetwork {
 			}
 		}
 		Collections.sort(influencers, new Comparator<String>() {
+
 			@Override
 			public int compare(String user1, String user2) {
-				return followers.get(influencers.indexOf(user1)) - followers.get(influencers.indexOf(user2));
+				return followers.get(influencers.indexOf(user2)) - followers.get(influencers.indexOf(user1));
 			}
 			
 		});
