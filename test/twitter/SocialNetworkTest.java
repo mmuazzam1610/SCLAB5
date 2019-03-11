@@ -76,6 +76,27 @@ public class SocialNetworkTest {
         
         assertTrue("expected empty list", influencers.isEmpty());
     }
+    @Test
+    public void influencersTest() {
+        Map<String, Set<String>> followsGraph = new HashMap<>();
+        HashSet<String> one = new HashSet<String>();
+        HashSet<String> two = new HashSet<String>();
+        HashSet<String> three = new HashSet<String>();
+        one.add("@khadeej");
+        two.add("@momin");
+        three.add("@bushi");
+        followsGraph.put("@muneeb", one);
+        followsGraph.put("@maamrafia", two);
+        followsGraph.put("@sirshehzad", three);
+        followsGraph.put("@fyprip", one);
+        followsGraph.put("@mairay28marks", one);
+        followsGraph.put("@yusra27lolz", two);
+        followsGraph.put("@no", three);
+        List<String> influencers = SocialNetwork.influencers(followsGraph);
+        assertEquals(influencers.get(0), one);
+        assertEquals(influencers.get(2), three);
+        
+    }
 
     /*
      * Warning: all the tests you write here must be runnable against any
