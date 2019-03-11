@@ -4,6 +4,9 @@
 package twitter;
 
 import java.io.IOException;
+
+import static org.junit.Assert.*;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;

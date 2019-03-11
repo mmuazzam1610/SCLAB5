@@ -3,6 +3,7 @@
  */
 package twitter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,13 @@ public class SocialNetwork {
 		String author;
 		List<Tweet> writtenBy;
 		Set<String> mentionedUsers;
-		Map<String, Set<String>> followGraph = new HashMap<String, Set<String>>();
+		Map<String, Set<String>> followGraph = new HashMap<>();
     	
 		for(Tweet tweet: tweets) {
 			author = tweet.getAuthor();
 			writtenBy = Filter.writtenBy(tweets, author);
 			mentionedUsers = Extract.getMentionedUsers(writtenBy);
-			if (!mentionedUsers.isEmpty()) {
+			if (!mentionedUsers.isEmpty() && !followGraph.containsKey(author)) {
 				followGraph.put(author, mentionedUsers);
 			}
 		}
@@ -68,8 +69,22 @@ public class SocialNetwork {
      *         descending order of follower count.
      */
     public static List<String> influencers(Map<String, Set<String>> followsGraph) {
-		return null;
-    	
+		List<String> influencers = new ArrayList<>();
+		List<Integer> followers = new ArrayList<>();
+		Map<Set<String>, String> followerGraph = new HashMap<>();
+		for(Set<String> follows : followsGraph.values()) {
+			for(String user : follows) {
+				if(influencers.contains(user)) {
+					followers.get(influencers.indexOf(user));
+				}
+				else {
+					influencers.add(user);
+					followers.add(1);
+				}
+			}
+			
+		}
+    	return influencers;
     }
 
 }
