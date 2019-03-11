@@ -20,19 +20,55 @@ public class SocialNetworkTest {
      * See the ic03-testing exercise for examples of what a testing strategy comment looks like.
      * Make sure you have partitions.
      */
+    private static final Instant d1 = Instant.parse("2016-02-17T10:00:00Z");
+    private static final Instant d2 = Instant.parse("2016-02-17T11:00:00Z");
+    private static final Instant d3 = Instant.parse("2016-02-17T12:00:00Z");
+    private static final Instant d4 = Instant.parse("2016-02-17T09:00:00Z");
+    private static final Instant d5 = Instant.parse("2016-02-17T08:00:00Z");
+    private static final Instant d6 = Instant.parse("2016-02-17T07:00:00Z");
+    private static final Instant d7 = Instant.parse("2016-02-17T05:00:00Z");
+
+    private static final Tweet tweet1 = new Tweet(1, "Ernie", "@Bert is it reasonable to talk about rivest so much?", d1);
+    private static final Tweet tweet2 = new Tweet(2, "Ernie", "rivest talk in 30 minutes @Momin", d2);
+    private static final Tweet tweet3 = new Tweet(3, "Ernie", "@Bert is a loser?", d3);
+    private static final Tweet tweet4 = new Tweet(4, "Ernie", " loser @Zaeem", d4);
+    private static final Tweet tweet5 = new Tweet(3, "Bert", "@Ernie NO YOU", d5);
+    private static final Tweet tweet6 = new Tweet(4, "Momin", "@Ernie okok", d6);
+    private static final Tweet tweet7 = new Tweet(4, "Momin", "bye okok", d7);
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false; // make sure assertions are enabled with VM argument: -ea
     }
-    
+
     @Test
     public void testGuessFollowsGraphEmpty() {
-        Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(new ArrayList<>());
-        
-        assertTrue("expected empty graph", followsGraph.isEmpty());
+        Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet7));
+
+        assertTrue("expected followers list", followsGraph.isEmpty());
+
     }
-    
+    @Test
+    public void testGuessFollowsGraphEmpty() {
+        Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
+        
+        assertTrue("expected followers list", followsGraph.get("Ernie").contains("Bert"));
+
+    }
+    @Test
+    public void testGuessFollowsGraphEmpty() {
+        Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
+
+
+        assertTrue("expected empty graph", followsGraph.get("Ernie").contains("Zaeem"));
+    }
+    @Test
+    public void testGuessFollowsGraphEmpty() {
+        Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
+
+
+        assertTrue("expected empty graph", followsGraph.get("Ernie").contains("Momin"));
+    }
     @Test
     public void testInfluencersEmpty() {
         Map<String, Set<String>> followsGraph = new HashMap<>();
