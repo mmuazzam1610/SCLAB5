@@ -49,21 +49,21 @@ public class SocialNetworkTest {
 
     }
     @Test
-    public void testGuessFollowsGraphEmpty() {
+    public void test1GuessFollowsGraph() {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
         
         assertTrue("expected followers list", followsGraph.get("Ernie").contains("Bert"));
 
     }
     @Test
-    public void testGuessFollowsGraphEmpty() {
+    public void test2GuessFollowsGraph() {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
 
 
         assertTrue("expected empty graph", followsGraph.get("Ernie").contains("Zaeem"));
     }
     @Test
-    public void testGuessFollowsGraphEmpty() {
+    public void test3GuessFollowsGraph() {
         Map<String, Set<String>> followsGraph = SocialNetwork.guessFollowsGraph(Arrays.asList(tweet1,tweet2,tweet3,tweet4));
 
 
