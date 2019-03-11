@@ -5,8 +5,10 @@ package twitter;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -91,11 +93,9 @@ public class SocialNetworkTest {
         followsGraph.put("@fyprip", one);
         followsGraph.put("@mairay28marks", one);
         followsGraph.put("@yusra27lolz", two);
-        followsGraph.put("@no", three);
         List<String> influencers = SocialNetwork.influencers(followsGraph);
-        assertEquals(influencers.get(0), one);
-        assertEquals(influencers.get(2), three);
-        
+        assertEquals(influencers.get(0), "khadeej");
+        assertEquals(influencers.get(2), "bushi");
     }
 
     /*

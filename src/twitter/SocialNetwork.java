@@ -4,6 +4,8 @@
 package twitter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +73,6 @@ public class SocialNetwork {
     public static List<String> influencers(Map<String, Set<String>> followsGraph) {
 		List<String> influencers = new ArrayList<>();
 		List<Integer> followers = new ArrayList<>();
-		Map<Set<String>, String> followerGraph = new HashMap<>();
 		for(Set<String> follows : followsGraph.values()) {
 			for(String user : follows) {
 				if(influencers.contains(user)) {
@@ -82,8 +83,14 @@ public class SocialNetwork {
 					followers.add(1);
 				}
 			}
-			
 		}
+		Collections.sort(influencers, new Comparator<String>() {
+			@Override
+			public int compare(String user1, String user2) {
+				return followers.get(influencers.indexOf(user1)) - followers.get(influencers.indexOf(user2));
+			}
+			
+		});
     	return influencers;
     }
 
